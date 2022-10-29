@@ -5,7 +5,7 @@
     <div class="hum">
         <ul class="hum__list">
             <li><a href="/index">home</a></li>
-            <li><a href="">mypage</a></li>
+            <li><a href="/mypage">mypage</a></li>
             <li><a href="">logout</a></li>
         </ul>
     </div>
@@ -29,29 +29,7 @@
 </header>
 <main class="index">
     @foreach($shops as $shop)
-    <div class="shop">
-        <div class="shop__img">
-            <img src="{{$shop->image_url}}" alt="{{$shop->name}}">
-        </div>
-        <p class="shop__name">{{$shop->name}}</p>
-        <div class="shop__relation">
-            <span class="shop__area">{{$shop->area->area}}</span>
-            <span class="shop__genre">{{$shop->genre->genre}}</span>
-        </div>
-        <div class="shop__like">
-            @if($shop->getLiked())
-            <form action="/like/delete" method="post">
-                @csrf
-                <button>いいね解除</button>
-            </form>
-            @else
-            <form action="/like/store" method="post">
-                @csrf
-                <button>いいね</button>
-            </form>
-            @endif
-        </div>
-    </div>
+    @include('components.shop', ['shop' => $shop])
     @endforeach
 </main>
 <style>

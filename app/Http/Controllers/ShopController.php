@@ -40,4 +40,10 @@ class ShopController extends Controller
         return view('index', compact('shops','areas','genres'));
 
     }
+
+    public function show($id, Request $request){
+
+        $shop = Shop::find($id)->with(['area','genre'])->first();
+        return view('shop.detail',compact('shop'));
+    }
 }

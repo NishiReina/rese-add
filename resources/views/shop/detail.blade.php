@@ -1,4 +1,8 @@
-<div class="shop">
+@extends('layouts.default')
+
+@section('content')
+<main class="detail">
+    <div class="shop">
         <div class="shop__img">
             <img src="{{$shop->image_url}}" alt="{{$shop->name}}">
         </div>
@@ -7,7 +11,7 @@
             <span class="shop__area">{{$shop->area->area}}</span>
             <span class="shop__genre">{{$shop->genre->genre}}</span>
         </div>
-        <a href="/shop/{{$shop->id}}">詳しく見る</a>
+        <p class="shop__text">{{$shop->description}}</p>
         <div class="shop__like">
             @if($shop->getLiked())
             <form action="{{ route('like.delete', ['shop_id' => $shop->id] )}}" method="post">
@@ -21,22 +25,16 @@
             </form>
             @endif
         </div>
-</div>
-<style>
-    img{
-        width: 100%;
-    }
+        <div class="reserve">
+            <form action="{{ route('reserve', ['shop_id' => $shop->id]) }}" method="post">
+                    @csrf
+                    <input name='date' type="date">
+                    <input name='time' type="time">
+                    <input name='num' type="number">
+                    <button type="submit">予約</button>
+            </form>
+        </div>
+    </div>
+</main>
 
-    .index{
-        width: 100vw;
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .shop{
-        width: 30%;
-        margin-right: 3vw;
-    }
-    .shop_img{
-        width: 100%;
-    }
-</style>
+@endsection

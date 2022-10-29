@@ -21,6 +21,14 @@ class Shop extends Model
         return $this->belongsTo('App\Models\Genre');
     }
 
+    public function likes(){
+        return $this->hasMany('App\Models\Like');
+    }
+
+    public function reserves(){
+        return $this->hasMany('App\Models\Reserve');
+    }
+
     public function getLiked(){
         
         $user_id = Auth::id();
