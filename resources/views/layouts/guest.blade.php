@@ -22,3 +22,8 @@
         </div>
     </body>
 </html>
+<style>
+    body{
+        width: 100vw;
+    }
+</style>

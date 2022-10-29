@@ -28,9 +28,27 @@
         <div class="reserve">
             <form action="{{ route('reserve', ['shop_id' => $shop->id]) }}" method="post">
                     @csrf
-                    <input name='date' type="date">
-                    <input name='time' type="time">
-                    <input name='num' type="number">
+                    @error('date')
+                    <p>{{$message}}</p>
+                    @enderror
+                    <label>
+                        名前：
+                        <input name='date' type="date">
+                    </label><br>
+                    @error('time')
+                    <p>{{$message}}</p>
+                    @enderror
+                    <label>
+                        時間：
+                        <input name='time' type="time">
+                    </label><br>
+                    @error('num')
+                    <p>{{$message}}</p>
+                    @enderror
+                    <label>
+                        人数：
+                        <input name='num' type="number">
+                    </label><br>
                     <button type="submit">予約</button>
             </form>
         </div>
